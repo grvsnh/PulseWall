@@ -1,1 +1,4 @@
-com.grvsnh.pulsewall:string/app_name = 0x7f010000
+com.grvsnh.pulsewall:xml/wallpaper = 0x7f030000
+com.grvsnh.pulsewall:string/wallpaper_desc = 0x7f020001
+com.grvsnh.pulsewall:string/app_name = 0x7f020000
+com.grvsnh.pulsewall:drawable/thumb = 0x7f010000

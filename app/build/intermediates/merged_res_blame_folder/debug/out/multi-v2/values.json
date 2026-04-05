@@ -6,18 +6,18 @@
                 {
                     "source": "/home/grvsnh/Work/album-wallpaper/app/src/main/res/values/strings.xml",
                     "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "16",
-                        "endColumns": "46",
-                        "endOffsets": "58"
+                        "startLines": "1,2",
+                        "startColumns": "4,4",
+                        "startOffsets": "16,63",
+                        "endColumns": "46,67",
+                        "endOffsets": "58,126"
                     },
                     "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "46",
-                        "endOffsets": "97"
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,102",
+                        "endColumns": "46,67",
+                        "endOffsets": "97,165"
                     }
                 }
             ]

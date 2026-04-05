@@ -1,3 +1,6 @@
 R_DEF: Internal format may change without notice
 local
+drawable thumb
 string app_name
+string wallpaper_desc
+xml wallpaper

@@ -8,52 +8,69 @@
 8        android:minSdkVersion="26"
 9        android:targetSdkVersion="34" />
 10
-11    <uses-permission android:name="android.permission.SET_WALLPAPER" />
-11-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:3:5-72
-11-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:3:22-69
-12    <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
-12-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:4:5-93
-12-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:4:22-90
-13
-14    <application
-14-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:6:5-29:19
-15        android:debuggable="true"
-16        android:extractNativeLibs="false"
-17        android:label="@string/app_name" >
-17-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:7:9-41
-18        <service
-18-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:9:9-16:19
-19            android:name="com.grvsnh.pulsewall.PulseWallService"
-19-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:10:13-45
-20            android:exported="true"
-20-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:12:13-36
-21            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
-21-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:11:13-87
-22            <intent-filter>
-22-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:13:13-15:29
-23                <action android:name="android.service.notification.NotificationListenerService" />
-23-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:14:17-99
-23-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:14:25-96
-24            </intent-filter>
-25        </service>
-26
-27        <activity
-27-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:18:9-27:20
-28            android:name="com.grvsnh.pulsewall.MainActivity"
-28-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:19:13-41
-29            android:exported="true" >
-29-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:20:13-36
+11    <application
+11-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:3:5-38:19
+12        android:debuggable="true"
+13        android:extractNativeLibs="false"
+14        android:icon="@android:drawable/ic_menu_gallery"
+14-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:5:9-57
+15        android:label="PulseWall" >
+15-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:4:9-34
+16        <activity
+16-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:7:9-14:20
+17            android:name="com.grvsnh.pulsewall.MainActivity"
+17-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:8:13-41
+18            android:exported="true" >
+18-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:9:13-36
+19            <intent-filter>
+19-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:10:13-13:29
+20                <action android:name="android.intent.action.MAIN" />
+20-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:11:17-69
+20-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:11:25-66
+21
+22                <category android:name="android.intent.category.LAUNCHER" />
+22-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:12:17-77
+22-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:12:27-74
+23            </intent-filter>
+24        </activity>
+25
+26        <service
+26-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:16:9-23:19
+27            android:name="com.grvsnh.pulsewall.PulseWallService"
+27-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:17:13-45
+28            android:exported="true"
+28-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:19:13-36
+29            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+29-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:18:13-87
 30            <intent-filter>
-30-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:22:13-25:29
-31                <action android:name="android.intent.action.MAIN" />
-31-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:23:17-69
-31-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:23:25-66
-32
-33                <category android:name="android.intent.category.LAUNCHER" />
-33-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:24:17-77
-33-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:24:27-74
-34            </intent-filter>
-35        </activity>
-36    </application>
-37
-38</manifest>
+30-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:20:13-22:29
+31                <action android:name="android.service.notification.NotificationListenerService" />
+31-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:21:17-99
+31-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:21:25-96
+32            </intent-filter>
+33        </service>
+34        <service
+34-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:25:9-36:19
+35            android:name="com.grvsnh.pulsewall.PulseWallWallpaperService"
+35-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:26:13-54
+36            android:exported="true"
+36-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:28:13-36
+37            android:permission="android.permission.BIND_WALLPAPER" >
+37-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:27:13-67
+38            <intent-filter>
+38-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:29:13-31:29
+39                <action android:name="android.service.wallpaper.WallpaperService" />
+39-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:30:17-85
+39-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:30:25-82
+40            </intent-filter>
+41
+42            <meta-data
+42-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:33:13-35:53
+43                android:name="android.service.wallpaper"
+43-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:34:17-57
+44                android:resource="@xml/wallpaper" />
+44-->/home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:35:17-50
+45        </service>
+46    </application>
+47
+48</manifest>

@@ -1,122 +1,137 @@
 package com.grvsnh.pulsewall
 
-import android.app.WallpaperManager
-import android.content.ComponentName
+import android.app.Notification
+import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.media.MediaMetadata
-import android.media.session.MediaController
-import android.media.session.MediaSessionManager
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.Icon
 import android.media.session.PlaybackState
-import android.os.Handler
-import android.os.Looper
+import android.os.Build
+import android.os.Bundle
 import android.service.notification.NotificationListenerService
+import android.service.notification.StatusBarNotification
 import android.util.Log
-import java.io.ByteArrayOutputStream
 
 class PulseWallService : NotificationListenerService() {
 
-    private lateinit var mediaSessionManager: MediaSessionManager
-    private val handler = Handler(Looper.getMainLooper())
+    private var lastTrackKey: String? = null
+    private var lastMusicPackage: String? = null
 
-    private var lastTrack: String? = null
-    private var lastState: Int = -1
+    override fun onNotificationPosted(sbn: StatusBarNotification) {
+        try {
+            val notification = sbn.notification ?: return
+            val extras = notification.extras ?: return
 
-    override fun onListenerConnected() {
-        super.onListenerConnected()
+            if (!isMediaNotification(notification, extras)) return
 
-        Log.d("PulseWall", "CONNECTED")
+            val title = extras.getString(Notification.EXTRA_TITLE)?.trim().orEmpty()
+            val artist = extras.getString(Notification.EXTRA_TEXT)?.trim().orEmpty()
+            if (title.isBlank() && artist.isBlank()) return
 
-        mediaSessionManager = getSystemService(MEDIA_SESSION_SERVICE) as MediaSessionManager
-        val component = ComponentName(this, PulseWallService::class.java)
+            val trackKey = "${sbn.packageName}|$title|$artist"
+            val mode = resolveMode(notification, extras)
+            val bitmap = extractBitmap(notification, extras)
 
-        handler.post {
-            try {
-                val controllers = mediaSessionManager.getActiveSessions(component)
-                controllers.forEach { registerController(it) }
-            } catch (e: Exception) {
-                Log.e("PulseWall", "Session error", e)
+            if (trackKey != lastTrackKey) {
+                Log.d("PulseWall", "$title - $artist")
+                lastTrackKey = trackKey
+                lastMusicPackage = sbn.packageName
+            }
+
+            PulseWallWallpaperService.update(bitmap, mode)
+        } catch (_: Exception) {}
+    }
+
+    override fun onNotificationRemoved(sbn: StatusBarNotification) {
+        if (sbn.packageName == lastMusicPackage) {
+            PulseWallWallpaperService.clear()
+            lastTrackKey = null
+            lastMusicPackage = null
+        }
+    }
+
+    private fun isMediaNotification(notification: Notification, extras: Bundle): Boolean {
+        return notification.category == Notification.CATEGORY_TRANSPORT ||
+                (notification.flags and Notification.FLAG_ONGOING_EVENT) != 0 ||
+                extras.containsKey(Notification.EXTRA_MEDIA_SESSION)
+    }
+
+    private fun resolveMode(notification: Notification, extras: Bundle): Int {
+        val state =
+                if (Build.VERSION.SDK_INT >= 33) {
+                    extras.getInt("android.mediaPlaybackState", -1)
+                } else {
+                    @Suppress("DEPRECATION") extras.getInt("android.mediaPlaybackState", -1)
+                }
+
+        return when (state) {
+            PlaybackState.STATE_PLAYING -> PulseWallWallpaperService.MODE_PLAYING
+            PlaybackState.STATE_PAUSED -> PulseWallWallpaperService.MODE_PAUSED
+            PlaybackState.STATE_STOPPED, PlaybackState.STATE_NONE ->
+                    PulseWallWallpaperService.MODE_STOPPED
+            else -> {
+                if ((notification.flags and Notification.FLAG_ONGOING_EVENT) != 0) {
+                    PulseWallWallpaperService.MODE_PLAYING
+                } else {
+                    PulseWallWallpaperService.MODE_PAUSED
+                }
+            }
+        }
+    }
+
+    private fun extractBitmap(notification: Notification, extras: Bundle): Bitmap? {
+        when (val raw = extras.get("android.largeIcon")) {
+            is Bitmap -> return raw
+            is Icon ->
+                    iconToBitmap(raw)?.let {
+                        return it
+                    }
+        }
+
+        val direct =
+                if (Build.VERSION.SDK_INT >= 33) {
+                    extras.getParcelable("android.largeIcon", Bitmap::class.java)
+                } else {
+                    @Suppress("DEPRECATION") extras.getParcelable("android.largeIcon")
+                }
+
+        if (direct is Bitmap) return direct
+
+        val icon = notification.largeIcon
+        if (icon != null) {
+            iconToBitmap(icon)?.let {
+                return it
             }
         }
 
-        mediaSessionManager.addOnActiveSessionsChangedListener(
-                { controllers -> controllers?.forEach { registerController(it) } },
-                component
-        )
+        return null
     }
 
-    private fun registerController(controller: MediaController) {
-
-        controller.registerCallback(
-                object : MediaController.Callback() {
-
-                    override fun onPlaybackStateChanged(state: PlaybackState?) {
-                        if (state == null) return
-
-                        if (state.state == lastState) return
-                        lastState = state.state
-
-                        if (state.state == PlaybackState.STATE_PLAYING) {
-                            Log.d("PulseWall", "PLAYING")
-
-                            val metadata = controller.metadata
-                            if (metadata != null) {
-                                val title = metadata.getString(MediaMetadata.METADATA_KEY_TITLE)
-                                val artist = metadata.getString(MediaMetadata.METADATA_KEY_ARTIST)
-
-                                if (!title.isNullOrBlank()) {
-                                    val key = "$title-$artist"
-                                    if (key != lastTrack) {
-                                        lastTrack = key
-                                        Log.d("PulseWall", key)
-
-                                        val art =
-                                                metadata.getBitmap(
-                                                        MediaMetadata.METADATA_KEY_ALBUM_ART
-                                                )
-                                                        ?: metadata.getBitmap(
-                                                                MediaMetadata.METADATA_KEY_ART
-                                                        )
-
-                                        if (art != null) {
-                                            applyWallpaper(art)
-                                        }
-                                    }
-                                }
-                            }
-                        } else if (state.state == PlaybackState.STATE_PAUSED ||
-                                        state.state == PlaybackState.STATE_STOPPED
-                        ) {
-                            Log.d("PulseWall", "PAUSED")
-                            lastTrack = null
-                        }
-                    }
-                }
-        )
-    }
-
-    private fun applyWallpaper(bitmap: Bitmap) {
-        try {
-            val display = resources.displayMetrics
-
-            val scaled =
-                    Bitmap.createScaledBitmap(
-                            bitmap,
-                            display.widthPixels,
-                            display.heightPixels,
-                            true
-                    )
-
-            val stream = ByteArrayOutputStream()
-            scaled.compress(Bitmap.CompressFormat.JPEG, 80, stream)
-            val bytes = stream.toByteArray()
-
-            val safeBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size) ?: return
-
-            WallpaperManager.getInstance(this)
-                    .setBitmap(safeBitmap, null, true, WallpaperManager.FLAG_LOCK)
-        } catch (e: Exception) {
-            Log.e("PulseWall", "Wallpaper fail", e)
+    private fun iconToBitmap(icon: Any): Bitmap? {
+        return try {
+            val method = icon.javaClass.getMethod("loadDrawable", Context::class.java)
+            val drawable = method.invoke(icon, this) as? Drawable ?: return null
+            drawableToBitmap(drawable)
+        } catch (_: Exception) {
+            null
         }
+    }
+
+    private fun drawableToBitmap(drawable: Drawable): Bitmap {
+        if (drawable is BitmapDrawable) {
+            drawable.bitmap?.let {
+                return it
+            }
+        }
+
+        val width = maxOf(1, drawable.intrinsicWidth)
+        val height = maxOf(1, drawable.intrinsicHeight)
+        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        drawable.setBounds(0, 0, canvas.width, canvas.height)
+        drawable.draw(canvas)
+        return bitmap
     }
 }

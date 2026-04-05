@@ -1,10 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.SET_WALLPAPER" />
-    <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
-
     <application
-        android:label="@string/app_name">
+        android:label="PulseWall"
+        android:icon="@android:drawable/ic_menu_gallery">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".PulseWallService"
@@ -15,16 +22,18 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".MainActivity"
+        <service
+            android:name=".PulseWallWallpaperService"
+            android:permission="android.permission.BIND_WALLPAPER"
             android:exported="true">
-
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.service.wallpaper.WallpaperService" />
             </intent-filter>
 
-        </activity>
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/wallpaper" />
+        </service>
 
     </application>
 </manifest>

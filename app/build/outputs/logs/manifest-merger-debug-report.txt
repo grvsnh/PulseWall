@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:1:1-30:12
-INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:1:1-30:12
-INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:1:1-30:12
-INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:1:1-30:12
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:1:1-39:12
+INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:1:1-39:12
+INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:1:1-39:12
+INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:1:1-39:12
 	package
 		INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml
 	android:versionName
@@ -12,51 +12,65 @@ INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml
 		INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:1:11-69
-uses-permission#android.permission.SET_WALLPAPER
-ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:3:5-72
-	android:name
-		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:3:22-69
-uses-permission#android.permission.BIND_NOTIFICATION_LISTENER_SERVICE
-ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:4:5-93
-	android:name
-		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:4:22-90
 application
-ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:6:5-29:19
-INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:6:5-29:19
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:3:5-38:19
+INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:3:5-38:19
 	android:extractNativeLibs
 		INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml
 	android:label
-		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:7:9-41
-service#com.grvsnh.pulsewall.PulseWallService
-ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:9:9-16:19
-	android:exported
-		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:12:13-36
-	android:permission
-		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:11:13-87
-	android:name
-		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:10:13-45
-intent-filter#action:name:android.service.notification.NotificationListenerService
-ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:13:13-15:29
-action#android.service.notification.NotificationListenerService
-ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:14:17-99
-	android:name
-		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:14:25-96
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:4:9-34
+	android:icon
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:5:9-57
 activity#com.grvsnh.pulsewall.MainActivity
-ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:18:9-27:20
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:7:9-14:20
 	android:exported
-		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:20:13-36
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:9:13-36
 	android:name
-		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:19:13-41
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:8:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:22:13-25:29
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:10:13-13:29
 action#android.intent.action.MAIN
-ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:23:17-69
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:11:17-69
 	android:name
-		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:23:25-66
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:11:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:24:17-77
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:12:17-77
 	android:name
-		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:24:27-74
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:12:27-74
+service#com.grvsnh.pulsewall.PulseWallService
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:16:9-23:19
+	android:exported
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:19:13-36
+	android:permission
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:18:13-87
+	android:name
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:17:13-45
+intent-filter#action:name:android.service.notification.NotificationListenerService
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:20:13-22:29
+action#android.service.notification.NotificationListenerService
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:21:17-99
+	android:name
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:21:25-96
+service#com.grvsnh.pulsewall.PulseWallWallpaperService
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:25:9-36:19
+	android:exported
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:28:13-36
+	android:permission
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:27:13-67
+	android:name
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:26:13-54
+intent-filter#action:name:android.service.wallpaper.WallpaperService
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:29:13-31:29
+action#android.service.wallpaper.WallpaperService
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:30:17-85
+	android:name
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:30:25-82
+meta-data#android.service.wallpaper
+ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:33:13-35:53
+	android:resource
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:35:17-50
+	android:name
+		ADDED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml:34:17-57
 uses-sdk
 INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/grvsnh/Work/album-wallpaper/app/src/main/AndroidManifest.xml
