@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.pulsewall"
+    namespace = "com.grvsnh.pulsewall"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.pulsewall"
+        applicationId = "com.grvsnh.pulsewall"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
